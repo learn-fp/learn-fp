@@ -4,6 +4,8 @@
 .vscode/
 .vim/
 
+project/metals.sbt
+
 target/
 .bloop/
 project/target/
