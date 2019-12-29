@@ -1,0 +1,11 @@
+.DS_Store
+*.DS_Store
+.metals/
+.vscode/
+.vim/
+
+target/
+.bloop/
+project/target/
+project/project/
+.metals/
