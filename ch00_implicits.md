@@ -1,5 +1,5 @@
 # The implications of implicit keyword in scala !
-Scala syntax is very simple and straightforward, that is if we ignore the infamous `implicit` keyword ! This bad reputation comes from the fact that not only it's a little confusing, it is used in couple of different ways to perform different tasks. But we can summarize it in one simple concept: __Extending the language__. Let's face it step by step.
+Scala syntax is very simple and straightforward, that is if we ignore the infamous `implicit` keyword ! This bad reputation comes from the fact that not only it's a little confusing, it is used in couple of different ways to perform different tasks. But we can summarize it in one simple concept: __Extending the language__. We break implicit keyword usage into two parts: Implicit conversion and implicit parameters.
 
 ## 1.Implicit conversion
 ### 1.1 Implicit conversion with implicit functions
@@ -60,7 +60,7 @@ Exercise 1: implement OptionHelper above using implicit functions (without using
 ```
 [Checkout the answer here](samples/src/main/scala/samples/ch00/Ex1.scala)
 
-Let's do another exercise to make sure that you're convinced that Scala means `Scalable Language`! Remember Java's ternary operation ? It was `String str = 1 == 2 ? "this" : "that"` which is like the following Scala code: `val str: String = if(1 == 2) "this" else "that"`.
+Let's do another exercise to make sure that you're convinced that Scala means __Scalable Language__ ! Remember Java's ternary operation ? It was `String str = 1 == 2 ? "this" : "that"` which is like the following Scala code: `val str: String = if(1 == 2) "this" else "that"`.
 How can we have this syntax in scala ?
 ```
 Exercise 2: Using implicit classes, support the following syntax: '<A Boolean> ? <t: T>' returns Option[T], if boolean is true then Some(t) otherwise None.
@@ -70,4 +70,55 @@ So that we can have the following ternary operation :
 ```
 [Checkout the answer here](samples/src/main/scala/samples/ch00/Ex2.scala)
 
+## 2. Implicit parameters
+In scala, any method can have explicit and implicit parameters, which means a method or function can have parameters that you don't have to passe them every time you want to call the function.
+Let's say that you have a function __fetch__ that given a url, downloads it's html contents. Your function has two parameters: the URL you want to fetch and a timeout (in milliseconds) so that fetching from a slow server won't take forever to complete (perhaps it returns empty result). It looks like this:
+
+```SCALA
+def fetch(url: String, timeout: Long): String = ???
+```
+* Note that you can put `???` as the body of the function that you want to implement later, and compiler won't nag.
+
+Here you can call your function like this 
+```SCALA
+val timeout = 2L * 60L * 1000L // Two minutes
+fetch("https://github.com", timeout )
+fetch("https://google.com", timeout )
+fetch("https://gitlab.com", timeout )
+fetch("https://github.io", timeout )
+```
+But usually you pass the __timeout__ parameter every time without any changes. Instead, you can declare that you want the timeout parameter implicitly from the context :
+
+```SCALA
+def fetch(url: String)(implicit timeout: Long): String = ???
+```
+And you can call your function like this :
+```SCALA
+implicit val timeout = 2L * 60L * 1000L // two minutes
+fetch("https://github.com")
+fetch("https://google.com")
+fetch("https://github.io")
+
+// ofcourse you can still pass the param explicitly
+fetch("https://gitlab.com")(timout * 4) 
+```
+What happens is somehow like the scenario in implicit conversion. The compiler sees a missing parameter, but it's declared as implicit parameter, so it looks like for an implicit value defined (or imported) in context and puts the implicit value there in compile time, which means the above code is compiled as :
+
+```SCALA
+implicit val timeout = 2L * 60L * 1000L // two minutes
+fetch("https://github.com")(timeout)
+fetch("https://google.com")(timeout)
+fetch("https://github.io")(timeout)
+
+// ofcourse you can still pass the param explicitly
+fetch("https://gitlab.com")(timout * 4) 
+```
+Implicit values can be defined directly (like the code above) or be imported using regular import keyword (just like implicit conversion).
+Implicit values can be defined as val, var, def or even singleton objects.
+
+## BEWARE
+```
+Implicit parameters are usually used where it's meaningful, not just convinient, for example you see that ExecutionContext values are usually passed around as implicit parameters, because it's something about context(obviously!). Using implicits (both conversion and parameter) can result in amazingly elegant code, or a hell of confusion. 
+Think twice before using either of them.
+```
 
