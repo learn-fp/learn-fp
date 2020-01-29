@@ -1,5 +1,5 @@
 # The implications of implicit keyword in scala !
-Scala syntax is very simple and straightforward, that is if we ignore the infamous `implicit` keyword ! This bad reputation comes from the fact that not only it's a little confusing, it is used in couple of different ways to perform different tasks. But we can summarize it in one simple concept: __Extending the language__. We break implicit keyword usage into two parts: Implicit conversion and implicit parameters.
+Scala syntax is very simple and straightforward, that is if we ignore the infamous `implicit` keyword ! This bad reputation comes from the fact that not only it's a little confusing, it is used in couple of different ways to perform different tasks. But we can summarize it in one simple concept: __Extending the language__. We break implicit keyword usage into two parts: Implicit conversion and implicit parameters. Note that implicits has other capabilities in scala that does not concern us in this book.
 
 ## 1.Implicit conversion
 ### 1.1 Implicit conversion with implicit functions
@@ -116,9 +116,22 @@ fetch("https://gitlab.com")(timout * 4)
 Implicit values can be defined directly (like the code above) or be imported using regular import keyword (just like implicit conversion).
 Implicit values can be defined as val, var, def or even singleton objects.
 
-## BEWARE
+### BEWARE
 ```
 Implicit parameters are usually used where it's meaningful, not just convinient, for example you see that ExecutionContext values are usually passed around as implicit parameters, because it's something about context(obviously!). Using implicits (both conversion and parameter) can result in amazingly elegant code, or a hell of confusion. 
 Think twice before using either of them.
 ```
 
+### 2.1. The implicitly keyword
+The `implicitly` keyword is a trick to summon an implicit value, just like an implicit parameter in a function's signature. For example, let's say there is type `JsonWriter[T]` and an instance of this type can convert an instance of `T` into a `JsonObject` and then to a Json-formatted String.
+
+```Scala
+val person = Person(name = "X" , age = 28)
+val writer = implicitly[JsonWriter[Person]]
+println(writer.write(person).toString)
+```
+And we expect to be able to run this code and the output must be something like this:
+```JSON
+{"name":"X","age":28}
+```
+As you may expect, the compiler tries to find evidence that there exist an implicit instance of `JsonWriter[Persor]' in the context and if it fail to ensure the instance is available, it raises an error and the compile would fail.
