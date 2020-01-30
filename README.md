@@ -26,8 +26,20 @@ Although Category theory is not easy to learn (even for mathematicians!), The go
 # Why I wrote this book 
 I've always admired Scalaz, I wondered whether it's possible to use it in real world, in real problems. But when I tried using Scalaz in my small projects, I found that it's somehow assumed that if you want to use Scalaz, you know functional programming very well (and a little Category theory ofcourse), but if your'e not used to functional programming and it's terminology, your'e stuck. Learing resources are limited to a few video presentatinos and a few blogs (Eugene Yokota's blog is awesome). And it's how I got the idea of writing a small handbook to help others that want to use Scalaz.
 
+# More learning resources
+* Category Theory
+    * Bartosz Milewski's awesome book ['Category Theory for Programmers'](https://github.com/hmemcpy/milewski-ctfp-pdf)
+    * (Programming with categories)[http://brendanfong.com/programmingcats.html] (MIT course)
+    * (Applied category theory)[https://ocw.mit.edu/courses/mathematics/18-s097-applied-category-theory-january-iap-2019/] (MIT course)
+* Functional programming
+    * (Mostly adequate guide to functional programming)[https://mostly-adequate.gitbooks.io/mostly-adequate-guide/]
+    * (Functional programming in scala)[https://www.manning.com/books/functional-programming-in-scala] (AKA the red book)
+* Libraries
+    * (Advanced scala with cats)[https://underscore.io/training/courses/advanced-scala/]
+
 # A Quick look
 This is a work in progress, chapters zero and one are ready at this time.
+
 ## List of chapters
 * Since Scala implicits are widely used throughout the book, [chapter zero](ch00_implicits.md) covers this concept (feel free to skip it if you feel confident in using implicits)
 * [chapter one](ch01.md) introduces Typeclasses and Scalaz

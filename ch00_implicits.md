@@ -135,3 +135,6 @@ And we expect to be able to run this code and the output must be something like 
 {"name":"X","age":28}
 ```
 As you may expect, the compiler tries to find evidence that there exist an implicit instance of `JsonWriter[Persor]' in the context and if it fail to ensure the instance is available, it raises an error and the compile would fail.
+
+## Further reading
+If you want to learn more about implicits in Scala, I suggest that you read [Li Haoyi's implicit design patterns](http://www.lihaoyi.com/post/ImplicitDesignPatternsinScala.html).
