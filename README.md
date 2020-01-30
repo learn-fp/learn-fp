@@ -29,13 +29,13 @@ I've always admired Scalaz, I wondered whether it's possible to use it in real w
 # More learning resources
 * Category Theory
     * Bartosz Milewski's awesome book ['Category Theory for Programmers'](https://github.com/hmemcpy/milewski-ctfp-pdf)
-    * (Programming with categories)[http://brendanfong.com/programmingcats.html] (MIT course)
-    * (Applied category theory)[https://ocw.mit.edu/courses/mathematics/18-s097-applied-category-theory-january-iap-2019/] (MIT course)
+    * [Programming with categories](http://brendanfong.com/programmingcats.html) (MIT course)
+    * [Applied category theory](https://ocw.mit.edu/courses/mathematics/18-s097-applied-category-theory-january-iap-2019/) (MIT course)
 * Functional programming
-    * (Mostly adequate guide to functional programming)[https://mostly-adequate.gitbooks.io/mostly-adequate-guide/]
-    * (Functional programming in scala)[https://www.manning.com/books/functional-programming-in-scala] (AKA the red book)
+    * [Mostly adequate guide to functional programming](https://mostly-adequate.gitbooks.io/mostly-adequate-guide/)
+    * [Functional programming in scala](https://www.manning.com/books/functional-programming-in-scala) (AKA the red book)
 * Libraries
-    * (Advanced scala with cats)[https://underscore.io/training/courses/advanced-scala/]
+    * [Advanced scala with cats](https://underscore.io/training/courses/advanced-scala/)
 
 # A Quick look
 This is a work in progress, chapters zero and one are ready at this time.
