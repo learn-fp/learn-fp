@@ -45,9 +45,9 @@ This is a work in progress, chapters zero and one are ready at this time.
 * [chapter one](ch01.md) introduces Typeclasses and Scalaz
 
 # About
-* Author: S.H.Ayat (Contact in [Twitter](https://twitter.com/fahim_ayat) and [Github](https://github.com/h-ayat))
+* Author: [S.H.Ayat](https://twitter.com/fahim_ayat)
 * Editors
-  * A.Parsamehr (Follow on [Twitter](https://twitter.com/parsamehram))
+  * [A.Parsamehr](https://twitter.com/parsamehram)
 * Contributors
   * Waiting for your help !!! :)
 
