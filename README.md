@@ -41,6 +41,7 @@ I've always admired Scalaz, I wondered whether it's possible to use it in real w
   * [Functional programming in scala](https://www.manning.com/books/functional-programming-in-scala) \(AKA the red book\)
 * Libraries
   * [Advanced scala with cats](https://underscore.io/training/courses/advanced-scala/)
+  * [Eugene yokota's blog](http://eed3si9n.com/learning-scalaz/)
 
 ## A Quick look
 
