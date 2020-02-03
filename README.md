@@ -58,6 +58,7 @@ This is a work in progress, chapters zero and one are ready at this time.
 * Editors
   * [A.Parsamehr](https://twitter.com/parsamehram)
 * Contributors
+  * [N.Yamani](https://github.com/navidyamani)
   * Waiting for your help !!! :\)
 
 This book is sponsored by [Sanjagh](https://github.com/Sanjagh)
