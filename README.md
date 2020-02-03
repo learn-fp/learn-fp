@@ -1,6 +1,3 @@
-# Learn Scalaz
-Learn functional programming using Scalaz! 
-
 # About this book
 This book is an introduction to functional programming using Scalaz. To read this book, you need to be familiar with basic Scala syntax including functions, classes, singleton objects, traits and pattern matching. You also need some non-basic Scala concepts(like implicits) but you'll learn them through the book. Many concepts are tought through examples and exercises. So, It's highly recommended that you work through the exercises.
 

@@ -44,17 +44,70 @@ And it gets even better. Let's say that we have a value `t: T` and somewhere you
 We'll see more examples of this functionality soon.
 
 ### 1.2. Implicit conversion with implicit classes
-Without further explanation, checkout this code:
+Let's continue with an example: If you've ever worked with concurrency in Scala, you've probably seen time expressions like `2.minutes` or `5.seconds` or `7.days`. But `Int` type in Scala does not have a method `minutes` or `seconds` or `days`, If you write `5.seconds` somewhere in your code you may even get a compile error saying that __value seconds is not a member of Int__! That is unless you import `scala.concurrent.duration._`. Test it right now, open a scala shell (or normal scala source file) and try it. When you add the import, the compile error goes away and you can write something like this :
+```SCALA
+import scala.concurrent.duration._
+val soccerMatchDuration: FiniteDuration = 1.hour + 30.minutes
+``` 
+Now that you know about implicit conversion, can you guesse whats happening behind the scenes? Let's digest it step by step. Lets analyze the expression `30.minutes`, since `Int` doesn't have a property(or function) `minutes` it's obvious that `30` is implicitly converted to something else, something with a method named `minutes`. But it doesn't even matter what this type is, it's just a tool that helps us convert an Integer to a `FiniteDuration` value (the + is a method in `FiniteDuration`), we know that this type must have a method `minutes` that returns a `FiniteDuration` ! Let's try to design it:
+```SCALA
+class DurationBuilder(value: Int) {
+	def minutes: FiniteDuration = new FiniteDuration(value, MINUTES)
+}
+// We can use it like this:
+val soccerMatchDuration = new DurationBuilder(90).minutes
+```
+Back to implicit conversion, now we know how `30.minutes` is compiled, we just need a simple implicit conversion:
+```SCALA
+class DurationBuilder(value: Int) {
+	def minutes: FiniteDuration = new FiniteDuration(value, MINUTES)
+}
+
+implicit def intToDurationBuilder(value: Int): DurationBuilder = new DurationBuilder(value)
+// now we can write :
+val halfHour: FiniteDuration = 30.minutes
+```
+Easy, right? To make this even easier, we can use a technique called `implicit class`. We can write the above code as :
+```SCALA
+implicit class DurationBuilder(value: Int) {
+	def minutes: FiniteDuration = new FiniteDuration(value, MINUTES)
+}
+// now we can write :
+val halfHour: FiniteDuration = 30.minutes
+```
+We just add the `implicit` keyword to our `DurationBuilder` class and the compiler generates the implicit conversion function for free!
+
+To make things more clear, when we have `implicit SomeClass(arg: SomeType)`, we get a the following function for free:
+```SCALA
+implicit def toSomeClass(arg: SomeType): SomeClass = new SomeClass(arg)
+```
+There are some limits though:
+* The constructor should have no more than one explicit parameter (it can have any number of implicit parameters)
+* Implicit classes must be define inside another class, package object or an object, we can write them directly in a Scala source file unless it's wrapped in something else.
+
+```TEXT
+Exercise 0: Extend Int type to support these features:
+2.isEven // true
+2.isOdd  // false
+10.isBetween(9, 12) // true
+10.isBetween(10, 12)// true
+10.isBetween(11, 12)// false
+9.maxWith(7) // returns 9
+9.minWith(7) // returns 7
+```
+[Checkout the answer here](samples/src/main/scala/samples/ch00/Ex0.scala)
+
+Now, to create even more powerful conversions, let's mix implicit classes with generics, let's say we need an easier way to use scala Options:
 ```SCALA
 implicit class OptionHelper[T](t: T) {
 	def some: Option[T] = Some(t)
 }
 println(22.some) // Some(22)
 println("Hi!".some) // Some("Hi!")
-println(Person("Name" , 33)) // Some(Person(name="Name", age=33))
+println(Person("Name" , 33).some) // Some(Person(name="Name", age=33))
 ```
-This technique is used to wrap a value inside our implicit class to add new behaviour to it. Here we've added a function `some` to values of all types (because of generic declaration), as long as `OptionHelper` is present in our scope.
-Note that `implicit classes` are not much different from `implicit functions`, in fact we can use this technique just with `implicit functions`. Why don't you give it a try ?
+
+Now, your turn:
 ```
 Exercise 1: implement OptionHelper above using implicit functions (without using implicit classe).
 ```
@@ -63,7 +116,7 @@ Exercise 1: implement OptionHelper above using implicit functions (without using
 Let's do another exercise to make sure that you're convinced that Scala means __Scalable Language__ ! Remember Java's ternary operation ? It was `String str = 1 == 2 ? "this" : "that"` which is like the following Scala code: `val str: String = if(1 == 2) "this" else "that"`.
 How can we have this syntax in scala ?
 ```
-Exercise 2: Using implicit classes, support the following syntax: '<A Boolean> ? <t: T>' returns Option[T], if boolean is true then Some(t) otherwise None.
+Exercise 2(Hard): Using implicit classes, support the following syntax: '<A Boolean> ? <t: T>' returns Option[T], if boolean is true then Some(t) otherwise None.
 Support also this syntax: '<t: Option[T]> | <q: T>' means t.getOrElse(q)
 So that we can have the following ternary operation :
 (1 == 2) ? "this" | "that"
