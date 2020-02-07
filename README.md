@@ -39,7 +39,7 @@ I've always admired Scalaz, I wondered whether it's possible to use it in real w
 * Functional programming
   * [Mostly adequate guide to functional programming](https://mostly-adequate.gitbooks.io/mostly-adequate-guide/)
   * [Functional programming in scala](https://www.manning.com/books/functional-programming-in-scala) \(AKA the red book\)
-* Libraries
+* Cats and Scalaz
   * [Advanced scala with cats](https://underscore.io/training/courses/advanced-scala/)
   * [Eugene yokota's blog](http://eed3si9n.com/learning-scalaz/)
 
@@ -47,10 +47,10 @@ I've always admired Scalaz, I wondered whether it's possible to use it in real w
 
 This is a work in progress, chapters zero and one are ready at this time.
 
-### List of chapters
-
-* Since Scala implicits are widely used throughout the book, [chapter zero](ch00_implicits.md) covers this concept \(feel free to skip it if you feel confident in using implicits\)
-* [chapter one](ch01.md) introduces Typeclasses and Scalaz
+## List of chapters
+* Since Scala implicits are widely used throughout the book, [chapter zero](ch00_implicits.md) covers this concept (feel free to skip it if you feel confident in using implicits)
+* [Chapter one](ch01.md) introduces Typeclasses and Scalaz
+* [Chapter two](ch02.md) intreduces Semigroup 
 
 ## About
 
