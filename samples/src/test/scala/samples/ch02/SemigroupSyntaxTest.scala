@@ -8,8 +8,8 @@ class SemigroupSyntaxTest extends AnyFlatSpec with Matchers {
     import SemigroupSyntax._
     import BasicSemigroupInstances._
 
-    2 <> 3 shouldBe 6
-    "Hello" <> " " <> "World!" shouldBe "Hello World!"
-    (1, 1) <> (2, 3) shouldBe (3, 4)
+    2 |+| 3 shouldBe 6
+    "Hello" |+| " " |+| "World!" shouldBe "Hello World!"
+    (1, 1) |+| (2, 3) shouldBe (3, 4)
   }
 }
