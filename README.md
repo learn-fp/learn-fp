@@ -28,7 +28,7 @@ Although Category theory is not easy to learn \(even for mathematicians!\), The 
 
 ## Why I wrote this book
 
-I've always admired Scalaz, I wondered whether it's possible to use it in the real world, in real problems. But when I tried using Scalaz in my small projects, I found that it's somehow assumed that if you want to use Scalaz, you know functional programming very well \(and a little Category theory ofcourse\), but if you're not used to functional programming and it's terminology, you're stuck. LLearningresources are limited to a few video presentations and a few blogs \(Eugene Yokota's blog is awesome\). And it's how I got the idea of writing a small handbook to help others that want to use Scalaz.
+I've always admired Scalaz, I wondered whether it's possible to use it in the real world, in real problems. But when I tried using Scalaz in my small projects, I found that it's somehow assumed that if you want to use Scalaz, you know functional programming very well \(and a little Category theory ofcourse\), but if you're not used to functional programming and it's terminology, you're stuck. Learning resources are limited to a few video presentations and a few blogs \(Eugene Yokota's blog is awesome\). And it's how I got the idea of writing a small handbook to help others that want to use Scalaz.
 
 ## More learning resources
 
