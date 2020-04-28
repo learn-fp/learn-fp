@@ -83,7 +83,7 @@ implicit def toSomeClass(arg: SomeType): SomeClass = new SomeClass(arg)
 ```
 There are some limits though:
 * The constructor should have no more than one explicit parameter (it can have any number of implicit parameters)
-* Implicit classes must be defined inside another class, package object or an object, we can write them directly in a Scala source file unless it's wrapped in something else.
+* Implicit classes must be defined inside another class, package object or an object, we can't write them directly in a Scala source file unless it's wrapped in something else.
 
 ```TEXT
 Exercise 0: Extend Int type to support these features:
@@ -170,10 +170,8 @@ Implicit values can be defined directly (like the code above) or be imported usi
 Implicit values can be defined as val, var, def or even singleton objects.
 
 ### BEWARE
-```
-Implicit parameters are usually used where it's meaningful, not just convinient, for example you see that ExecutionContext values are usually passed around as implicit parameters, because it's something about context(obviously!). Using implicits (both conversion and parameter) can result in amazingly elegant code, or a hell of confusion. 
+Implicit parameters are usually used where it's meaningful, not just convenient, for example you see that ExecutionContext values are usually passed around as implicit parameters, because it's something about the context(obviously!). Using implicits (both conversion and parameter) can result in amazingly elegant code, or a hell of confusion. 
 Think twice before using either of them.
-```
 
 ### 2.1. The implicitly keyword
 The `implicitly` keyword is a trick to summon an implicit value, just like an implicit parameter in a function's signature. For example, let's say there is type `JsonWriter[T]` and an instance of this type can convert an instance of `T` into a `JsonObject` and then to a JSON-formatted String.
